@@ -27,10 +27,19 @@ const TodoList = () => {
         window.location.reload()
     }
 
+    const taskToggle = (index) => {
+        let tempList = taskList
+        let taskObj = {}
+        taskObj["Name"] = tempList[index].Name
+        taskObj["Description"] = tempList[index].Description
+        taskObj["IsDone"] = !tempList[index].IsDone
+        updateListArray(taskObj, index)
+        window.location.reload()
+    }
+
     const updateListArray = (obj, index) => {
         let tempList = taskList
         tempList[index] = obj
-        console.log("updateListArray", obj, taskList)
         localStorage.setItem("taskList", JSON.stringify(tempList))
         setTaskList(tempList)
         window.location.reload()
@@ -53,7 +62,7 @@ const TodoList = () => {
                 </div>
                 <div className='task-container col-md-12 flex-wrap d-flex mx-auto'>
                     <div className='card-division justify-items-center row mx-auto'>
-                        {taskList && taskList.map((obj, index) => <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray} key={index} />)}
+                        {taskList && taskList.map((obj, index) => <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray} taskDone = {taskToggle} key={index} />)}
                     </div>
                 </div>
             </div>

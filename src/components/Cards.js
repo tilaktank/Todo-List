@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EditTasks from '../modals/EditTask';
 
-const Card = ({taskObj, index, deleteTask, updateListArray}) => {
+const Card = ({taskObj, index, deleteTask, updateListArray, taskDone}) => {
     const [modal, setModal] = useState(false);
 
     const colors = [
@@ -33,12 +33,21 @@ const Card = ({taskObj, index, deleteTask, updateListArray}) => {
     }
 
     const updateTask = (obj) => {
-
         updateListArray(obj, index)
     }
 
     const handleDelete = () => {
         deleteTask(index)
+    }
+
+    const handleDone = () => {
+        taskDone(index)
+    }
+    let styleNotDone = {
+        "color" : "#fff", "cursor" : "pointer", "position" : "absolute", "right" : "15px", "top" : "27px"
+    }
+    let styleDone = {
+        "color" : "#65FFDA", "cursor" : "pointer", "position" : "absolute", "right" : "15px", "top" : "27px"
     }
 
     return (
@@ -49,7 +58,7 @@ const Card = ({taskObj, index, deleteTask, updateListArray}) => {
                     <span className="card-header" style={{backgroundColor: colors[index%5].secondaryColor, borderRadius: "10px"}}>
                         <b>{taskObj.Name}</b>
                     </span>
-                    <i class="fa-solid fa-2xl fa-check m-1" style={{"color" : "#64ffda", "cursor" : "pointer", "position" : "absolute", "right" : "20px", "top" : "25px"}}></i>
+                    <i className="far fa-2xl fa-circle-check m-1" style={taskObj.IsDone ? styleDone : styleNotDone} onClick = {handleDone}></i>
                 </div>
                 <div className="mt-3">
                     <p>{taskObj.Description}</p>

@@ -6,10 +6,10 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const CreateTasks = ({modal, toggle, save}) => {
     const [taskName, setTaskName] = useState('');
     const [description, setDescription] = useState('');
+    const [isDone, setIsDone] = useState(false);
 
     const handleChange = (e) => {
         const {name, value} = e.target
-        console.log(name, value)
         if(name === "task-name"){
             setTaskName(value)
         }
@@ -20,8 +20,10 @@ const CreateTasks = ({modal, toggle, save}) => {
 
     const createTask = () => {
         let taskObj = {}
+        setIsDone(false)
         taskObj["Name"] = taskName
         taskObj["Description"] = description
+        taskObj["IsDone"] = isDone
         save(taskObj)
         window.location.reload()
         document.querySelector("#title").value=""
