@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-// import EditTask from '../modals/EditTask'
+import EditTasks from '../modals/EditTask';
 
 const Card = ({taskObj, index, deleteTask, updateListArray}) => {
     const [modal, setModal] = useState(false);
 
     const colors = [
         {
-            primaryColor : "#5D93E1",
+            // primaryColor : "#5D93E1",
+            primaryColor : "#64FFDA",
             secondaryColor : "#ECF3FC"
         },
         {
@@ -32,6 +33,7 @@ const Card = ({taskObj, index, deleteTask, updateListArray}) => {
     }
 
     const updateTask = (obj) => {
+
         updateListArray(obj, index)
     }
 
@@ -40,20 +42,24 @@ const Card = ({taskObj, index, deleteTask, updateListArray}) => {
     }
 
     return (
-        <div class = "card-wrapper mr-5">
-            <div class = "card-top" style={{"background-color": colors[index%5].primaryColor}}></div>
-            <div class = "task-holder">
-                <span class = "card-header" style={{"background-color": colors[index%5].secondaryColor, "border-radius": "10px"}}>
-                    {taskObj.Name}
-                </span>
-                <p className = "mt-3">{taskObj.Description}</p>
-
-                <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
-                    <i class = "far fa-edit mr-3" style={{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {() => setModal(true)}></i>
-                    <i class="fas fa-trash-alt" style = {{"color" : colors[index%5].primaryColor, "cursor" : "pointer"}} onClick = {handleDelete}></i>
+        <div className = "card-wrapper m-4">
+            {/* <div class = "card-top" style={{"background-color": colors[index%5].primaryColor}}></div> */}
+            <div className = "task-holder ">
+                <div className='mt-2'>
+                    <span className="card-header" style={{backgroundColor: colors[index%5].secondaryColor, borderRadius: "10px"}}>
+                        <b>{taskObj.Name}</b>
+                    </span>
+                    <i class="fa-solid fa-2xl fa-check m-1" style={{"color" : "#64ffda", "cursor" : "pointer", "position" : "absolute", "right" : "20px", "top" : "25px"}}></i>
                 </div>
-        </div>
-        {/* <EditTask modal = {modal} toggle = {toggle} updateTask = {updateTask} taskObj = {taskObj}/> */}
+                <div className="mt-3">
+                    <p>{taskObj.Description}</p>
+                </div>
+                <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
+                    <i className="far fa-edit m-1" style={{"color" : "#F9D288", "cursor" : "pointer"}} onClick = {() => setModal(true)}></i>
+                    <i className="fas fa-trash-alt m-1" style = {{"color" : "#F48687", "cursor" : "pointer"}} onClick = {handleDelete}></i>
+                </div>
+            </div>
+            <EditTasks modal = {modal} toggle = {toggle} updateTask = {updateTask} taskObj = {taskObj}/>
         </div>
     );
 };

@@ -19,11 +19,28 @@ const TodoList = () => {
         }
     }, [])
 
+    const deleteTask = (index) => {
+        let tempList = taskList
+        tempList.splice(index, 1)
+        localStorage.setItem("taskList", JSON.stringify(tempList))
+        setTaskList(tempList)
+        window.location.reload()
+    }
+
+    const updateListArray = (obj, index) => {
+        let tempList = taskList
+        tempList[index] = obj
+        console.log("updateListArray", obj, taskList)
+        localStorage.setItem("taskList", JSON.stringify(tempList))
+        setTaskList(tempList)
+        window.location.reload()
+    }
+
     const saveTask = (taskObj) => {
         let tempList = taskList
         tempList.push(taskObj)
         localStorage.setItem("taskList", JSON.stringify(tempList))
-        setTaskList(tempList)
+        setTaskList(taskList)
         setModal(false)
     }
 
@@ -31,11 +48,13 @@ const TodoList = () => {
         <>
             <div className='col'>
                 <div className='head text-center'>
-                    <h1>Todo List</h1>
+                    <h1 className='mb-3'><b>Todo List</b></h1>
                     <button className='btn btn-primary' onClick={() => setModal(true)}>Create Task</button>
                 </div>
-                <div className='list'>
-                    {taskList && taskList.map((obj, index) => <Card taskObj = {obj} index = {index} />)}
+                <div className='task-container col-md-12 flex-wrap d-flex mx-auto'>
+                    <div className='card-division justify-items-center row mx-auto'>
+                        {taskList && taskList.map((obj, index) => <Card taskObj = {obj} index = {index} deleteTask = {deleteTask} updateListArray = {updateListArray} key={index} />)}
+                    </div>
                 </div>
             </div>
             <CreateTasks modal = {modal} toggle={toggle} save = {saveTask} />

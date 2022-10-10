@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 
-const CreateTasks = ({modal, toggle, save}) => {
+const EditTasks = ({modal, toggle, taskObj, updateTask}) => {
     const [taskName, setTaskName] = useState('');
     const [description, setDescription] = useState('');
 
@@ -18,34 +18,37 @@ const CreateTasks = ({modal, toggle, save}) => {
         )
     }
 
-    const createTask = () => {
-        let taskObj = {}
-        taskObj["Name"] = taskName
-        taskObj["Description"] = description
-        save(taskObj)
-        window.location.reload()
-        document.querySelector("#title").value=""
-        document.querySelector("#des").value=""
+    useEffect(() => {
+        setTaskName(taskObj.Name)
+        setDescription(taskObj.Description)
+    }, [])
+
+    const handleUpdate = (e) => {
+        e.preventDefault();
+        let tempObj = {}
+        tempObj["Name"] = taskName
+        tempObj["Description"] = description
+        updateTask(tempObj)
     }
 
     return (
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader toggle={toggle}><b>New Task</b></ModalHeader>
+            <ModalHeader toggle={toggle}><b>Update Task</b></ModalHeader>
             <ModalBody>
                 <form>
                     <div className='form-group p-2'>
                         <label>Title</label>
-                        <input className='form-control' type="text" id="title" name="task-name" value={taskName} onChange={handleChange} />
+                        <input className='form-control' type="text" name="task-name" value={taskName} onChange={handleChange} />
                     </div>
                     <div className='form-group p-2'>
                         <label>Description</label>
-                        <textarea className='form-control' id="des" name="task-details" rows="5" value={description} onChange={handleChange} ></textarea>
+                        <textarea className='form-control' name="task-details" rows="5" value={description} onChange={handleChange} ></textarea>
                     </div>
                 </form>
             </ModalBody>
             <ModalFooter>
-                <Button color="primary" onClick={createTask}>
-                    Create
+                <Button color="primary" onClick={handleUpdate}>
+                    Save
                 </Button>{' '}
                 <Button color="secondary" onClick={toggle}>
                     Cancel
@@ -55,4 +58,4 @@ const CreateTasks = ({modal, toggle, save}) => {
     );
 };
 
-export default CreateTasks;
+export default EditTasks;
