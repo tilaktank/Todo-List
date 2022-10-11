@@ -58,4 +58,4 @@ Technologies used in the project:
 
 <h2>Special Thanks</h2>
 
-[Bhavin Vasara]("https://github.com/itzzmegrrr")
+[Bhavin Vasara](https://github.com/itzzmegrrr)
