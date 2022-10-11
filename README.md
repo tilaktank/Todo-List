@@ -24,25 +24,25 @@ Here're some of the project's best features:
 
 <p>1. Clone this repository</p>
 
-```
+```sh
 git clone "https://github.com/tilaktank/Todo-List.git"
 ```
 
 <p>2. Navigate to the Todo-List directory</p>
 
-```
+```sh
 cd Todo-List
 ```
 
 <p>3. Install required packages</p>
 
-```
+```sh
 npm install
 ```
 
 <p>4. Run the project</p>
 
-```
+```sh
 npm start
 ```
 
