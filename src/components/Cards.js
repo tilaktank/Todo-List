@@ -43,25 +43,26 @@ const Card = ({taskObj, index, deleteTask, updateListArray, taskDone}) => {
     const handleDone = () => {
         taskDone(index)
     }
-    let styleNotDone = {
+    let styleNotDoneTick = {
         "color" : "#fff", "cursor" : "pointer", "position" : "absolute", "right" : "15px", "top" : "27px"
     }
-    let styleDone = {
-        "color" : "#65FFDA", "cursor" : "pointer", "position" : "absolute", "right" : "15px", "top" : "27px"
+    let styleDoneTick = {
+        "color" : "#00D100", "cursor" : "pointer", "position" : "absolute", "right" : "15px", "top" : "27px"
     }
 
     return (
         <div className = "card-wrapper m-4">
-            {/* <div class = "card-top" style={{"background-color": colors[index%5].primaryColor}}></div> */}
             <div className = "task-holder ">
                 <div className='mt-2'>
-                    <span className="card-header" style={{backgroundColor: colors[index%5].secondaryColor, borderRadius: "10px"}}>
-                        <b>{taskObj.Name}</b>
-                    </span>
-                    <i className="far fa-2xl fa-circle-check m-1" style={taskObj.IsDone ? styleDone : styleNotDone} onClick = {handleDone}></i>
+                    <div className="card-header" style={{backgroundColor: colors[index%5].secondaryColor, borderRadius: "10px", maxWidth: "fit-content"}}>
+                        <b style={taskObj.IsDone ? {textDecoration : "line-through", fontWeight : "bold", color : "#525252"} : {color : "#3B3B3B"}}>{taskObj.Name}</b>
+                    </div>
+                    <div>
+                        <i className="far fa-2xl fa-circle-check m-1" style={taskObj.IsDone ? styleDoneTick : styleNotDoneTick} onClick = {handleDone}></i>
+                    </div>
                 </div>
                 <div className="mt-3">
-                    <p>{taskObj.Description}</p>
+                    <p style={taskObj.IsDone ? {textDecoration : "line-through", fontWeight : "bold", color : "#C5C5C5"} : {}}>{taskObj.Description}</p>
                 </div>
                 <div style={{"position": "absolute", "right" : "20px", "bottom" : "20px"}}>
                     <i className="far fa-edit m-1" style={{"color" : "#F9D288", "cursor" : "pointer"}} onClick = {() => setModal(true)}></i>

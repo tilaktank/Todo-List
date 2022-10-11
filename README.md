@@ -6,10 +6,10 @@
 <!-- Badges -->
 <p>
     <a href="">
-    <img src="https://img.shields.io/github/last-commit/Louis3797/awesome-readme-template" alt="last update" />
+    <img src="https://img.shields.io/github/last-commit/tilaktank/Todo-List" alt="last update" />
   </a>
-  <a href="https://github.com/Louis3797/awesome-readme-template/network/members">
-    <img src="https://img.shields.io/github/forks/Louis3797/awesome-readme-template" alt="forks" />
+  <a href="https://github.com/tilaktank/Todo-List/network/members">
+    <img src="https://img.shields.io/github/forks/tilaktank/Todo-List" alt="forks" />
   </a>
   <a href="https://github.com/Louis3797/awesome-readme-template/stargazers">
     <img src="https://img.shields.io/github/stars/Louis3797/awesome-readme-template" alt="stars" />
